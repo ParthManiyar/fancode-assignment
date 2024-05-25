@@ -1,0 +1,8 @@
+package-lock.json
+node_modules/
+.idea/inspectionProfiles/Project_Default.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/fancode-assignment.iml

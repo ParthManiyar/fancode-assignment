@@ -6,6 +6,13 @@ const getAllMatches = async () => {
     return await mysql.query(statement, parameters);
 }
 
+const getTourId = async matchId => {
+    const statment = 'select tourId from matches where matches.id = ?';
+    const parameters = [matchId];
+    return await mysql.query(statment, parameters);
+}
+
 module.exports = {
-    getAllMatches: getAllMatches
+    getAllMatches: getAllMatches,
+    getTourId: getTourId
 }

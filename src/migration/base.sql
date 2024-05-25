@@ -57,3 +57,18 @@ insert ignore into mydb.matches (name, tourId, format, startTime, endTime) value
 insert ignore into mydb.matches (name, tourId, format, startTime, endTime) values ('KER vs JFC', 4, 'soccer', '2022-04-09 18:00:00', '2022-04-09 23:00:00');
 
 create index tour_name_index on mydb.tours (name);
+
+create table if not exists mydb.news
+(
+    id int auto_increment not null primary key,
+    title varchar(100) not null,
+    description text not null,
+    tourId int,
+    sportId int,
+    matchId int,
+    recUpdatedAt timestamp not null default current_timestamp on update current_timestamp,
+    createdAt timestamp not null default current_timestamp,
+    foreign key (tourId) references tours(id),
+    foreign key (sportId) references sports(id),
+    foreign key (matchId) references matches(id)
+);

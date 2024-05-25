@@ -12,7 +12,15 @@ const getMatchesByTourName = async params => {
     return await mysql.query(statement, parameters);
 }
 
+const getSportId = async tourId => {
+    const statement = 'select sportId from tours where tours.id = ?;';
+    const parameters = [tourId];
+    return await mysql.query(statement, parameters);
+}
+
 module.exports = {
     getAllTours: getAllTours,
-    getMatchesByTourName: getMatchesByTourName
+    getMatchesByTourName: getMatchesByTourName,
+    getSportId: getSportId
 }
+

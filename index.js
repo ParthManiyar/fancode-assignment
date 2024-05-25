@@ -1,8 +1,13 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const helper = require("./src/lib/helper");
 const config = require('./config/config');
+// Middleware to parse JSON bodies
 const app = express();
 const port = config.server.port;
+app.use(bodyParser.json());
+
 
 //Register routes
 helper
