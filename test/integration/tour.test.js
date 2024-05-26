@@ -1,25 +1,26 @@
 const request = require('supertest');
 const { app } = require('../../index');
 
-describe('Tour API Tests', () => {
+describe('Tour API tests', () => {
+  let server;
 
-    let server;
-    let port = 3000;
+  beforeAll((done) => {
+    server = app.listen(done);
+  });
 
-    beforeAll(done => {
-    server = app.listen(port, () => {
-        console.log(`Test server running on port ${port}`);
-        done();
-    });
-    });
-
-    afterAll(done => {
+  afterAll((done) => {
     server.close(done);
-    });
+  });
 
-
-  it('should return a 500 status code for GET request to /tour/matches without pagination parameters', async () => {
-    const response = await request(app).get('/tour/matches');
+  it('should return a error for GET request to /tour/matches without pagination parameters', async () => {
+    const response = await request(server).get('/tour/matches');
     expect(response.status).toBe(500);
   });
+
+  it('Test getting number of records as per the pagination paramters', async () => {
+    const response = await request(server).get('/tour/matches').query({"name": "Indian Premier League, 2023", "pageSize": 2, "pageNumber": 1});
+    expect(response.status).toBe(200);
+    expect(response.body.length).toBe(2);
+  });
+
 });

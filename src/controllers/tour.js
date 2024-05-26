@@ -5,29 +5,29 @@ const getAllTours = async () => {
 }
 
 const getMatchesByTourName = async params => {
-    const { name, page_size, page_number } = params;
+    const { name, pageSize, pageNumber } = params;
 
     if (!name) {
         throw new Error('Missing required parameter: name');
     }
 
-    if (page_size === undefined || page_size == null) {
+    if (pageSize === undefined || pageSize == null) {
         throw new Error('Missing required parameter: page_size');
     }
 
-    if (page_number === undefined || page_number == null ) {
+    if (pageSize === undefined || pageNumber == null ) {
         throw new Error('Missing required parameter: page_number');
     }
 
-    if(parseInt(page_size) <= 0) {
+    if(parseInt(pageSize) <= 0) {
         throw new Error('page_size must be positive');
     }
 
-    if(parseInt(page_number) < 0) {
+    if(parseInt(pageNumber) < 0) {
         throw new Error('page_number must be positive');
     }
 
-    if (parseInt(page_size) > MAX_PAGE_SIZE) {
+    if (parseInt(pageSize) > MAX_PAGE_SIZE) {
         throw new Error('page_size must be less than 100');
     }
 
