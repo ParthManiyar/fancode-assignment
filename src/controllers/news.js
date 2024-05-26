@@ -23,8 +23,8 @@ const addNews = async body => {
     
     if(matchId){
         tourId = await Match.getTourId(matchId);
-        sportId = await Tour.getSportId(tourId);
         tourId = tourId[0]["tourId"];
+        sportId = await Tour.getSportId(tourId);
         sportId = sportId[0]["sportId"];
     }
     else if(tourId){
